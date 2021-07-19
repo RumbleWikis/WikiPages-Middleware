@@ -75,6 +75,7 @@ const sassCompiler: Middleware = {
         path: `${file.path}${file.shortExtension}`,
         source: compiled.css.toString()
       }
+      
     } catch {
       return {
         ...file,
