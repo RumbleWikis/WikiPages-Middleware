@@ -34,7 +34,7 @@ const denoBundler: Middleware = {
       file.originalDirectory
     ]);
 
-    if (bundle.error) return { ...file, shouldCommit: false };
+    if (!bundle.stdout.length) return { ...file, shouldCommit: false };
 
     if (!settings?.useBabel) return { 
       ...file,
