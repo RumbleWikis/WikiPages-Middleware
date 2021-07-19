@@ -12,9 +12,12 @@ const sassCompiler: Middleware = {
         file: file.originalDirectory
       });
 
+      
       return {
         ...file,
-        path: `${file.path}${file.shortExtension}`,
+        shortExtension: ".css",
+        longExtension: `${file.longExtension.slice(0, -file.shortExtension.length)}.css`,
+        path: `${file.path}.css`,
         source: compiled.css.toString()
       }
       

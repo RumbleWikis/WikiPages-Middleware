@@ -25,7 +25,7 @@ interface DenoBundlerSettings {
 
 
 const denoBundler: Middleware = {
-  matchShortExtension: /^\.((\j|\t)sx?)$/,
+  matchShortExtension: /^\.(j|t)sx?$/,
   settingsIndex: "denoBundler",
   execute: (file, settings?: DenoBundlerSettings) => {
     const bundle = spawnSync("deno", [
@@ -36,8 +36,10 @@ const denoBundler: Middleware = {
 
     if (bundle.error) return { ...file, shouldCommit: false };
 
-    if (settings?.useBabel) return { 
+    if (!settings?.useBabel) return { 
       ...file,
+      shortExtension: ".js",
+      longExtension: `${file.longExtension.slice(0, -file.shortExtension.length)}.js`,
       source: bundle.stdout.toString(),
       path: `${file.path}.js`
     }
@@ -52,10 +54,13 @@ const denoBundler: Middleware = {
 
     if (!transformed?.code) return { ...file, shouldCommit: false };
 
+
     return {
       ...file,
+      shortExtension: ".js",
+      longExtension: `${file.longExtension.slice(0, -file.shortExtension.length)}.js`,
       source: transformed.code,
-      path: `${file.path}${file.longExtension.slice(0, -(file.shortExtension))}.js`
+      path: `${file.path}.js`
     }
   }
 }
