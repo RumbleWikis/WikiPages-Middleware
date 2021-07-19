@@ -15,6 +15,7 @@
   "author": "rumblewikis",
   "license": "MIT",
   "scripts": {
+    "build": "tsc || echo",
     "prepublishOnly": "tsc || echo"
   },
   "dependencies": {
