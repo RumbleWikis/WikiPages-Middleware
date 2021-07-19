@@ -16,7 +16,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc || echo",
-    "prepublishOnly": "tsc || echo"
+    "prepublishOnly": "tsc || echo",
+    "prepack": "tsc || echo"
   },
   "dependencies": {
     "sass": "^1.35.2"
