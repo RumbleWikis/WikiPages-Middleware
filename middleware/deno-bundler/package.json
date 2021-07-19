@@ -1,0 +1,37 @@
+{
+  "name": "@rumblewikis/wikipages-deno-bundler-middleware",
+  "description": "Bundles .jsx, .tsx, .js, and .ts files into .js files using the Deno bundler.",
+  "version": "0.1.0",
+  "main": "out/index.js",
+  "types": "out/index.d.ts",
+  "keywords": [
+    "mediawiki",
+    "wiki",
+    "fandom",
+    "wikipages"
+  ],
+  "author": "rumblewikis",
+  "license": "MIT",
+  "scripts": {
+    "prepublishOnly": "tsc || echo"
+  },
+  "dependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.14.5",
+    "@babel/preset-env": "^7.14.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/RumbleWikis/WikiPages-Middleware.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RumbleWikis/WikiPages-Middleware/issues"
+  },
+  "homepage": "https://github.com/RumbleWikis/WikiPages-Middleware#readme",
+  "devDependencies": {
+    "@types/node": "^16.3.3",
+    "@types/babel__core": "^7.1.15",
+    "typescript": "^4.3.5"
+  }
+}
