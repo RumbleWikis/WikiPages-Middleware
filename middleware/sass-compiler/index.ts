@@ -9,7 +9,7 @@ const sassCompiler: Middleware = {
     try {
       const compiled = sass.renderSync({
         ...settings,
-        file: file.originalDirectory
+        file: file.originalPath
       });
 
       

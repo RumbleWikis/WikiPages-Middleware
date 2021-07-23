@@ -31,7 +31,7 @@ const denoBundler: Middleware = {
     const bundle = spawnSync("deno", [
       "bundle",
       ...settings?.parameters || [],
-      file.originalDirectory
+      file.originalPath
     ]);
 
     if (!bundle.stdout.length) return { ...file, shouldCommit: false };
