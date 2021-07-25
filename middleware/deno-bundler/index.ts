@@ -31,18 +31,15 @@ const denoBundler: Middleware = {
     const bundle = spawnSync("deno", [
       "bundle",
       ...settings?.parameters || [],
-      file.originalPath
+      file.originalPath!
     ]);
 
-    if (!bundle.stdout.length) return { ...file, shouldCommit: false };
+    if (!bundle.stdout.length) return file.change({ shouldCommit: false });
 
-    if (!settings?.useBabel) return { 
-      ...file,
-      shortExtension: ".js",
-      longExtension: `${file.longExtension.slice(0, -file.shortExtension.length)}.js`,
+    if (!settings?.useBabel) return file.change({ 
       source: bundle.stdout.toString(),
       path: `${file.path}.js`
-    }
+    });
 
     const transformed = babel.transformSync(bundle.stdout.toString(), {
       presets: [[babelPresetEnv, { targets: "> 0.25%, not dead" }]],
@@ -52,16 +49,13 @@ const denoBundler: Middleware = {
       ],
     });
 
-    if (!transformed?.code) return { ...file, shouldCommit: false };
+    if (!transformed?.code) return file.change({ shouldCommit: false });
 
 
-    return {
-      ...file,
-      shortExtension: ".js",
-      longExtension: `${file.longExtension.slice(0, -file.shortExtension.length)}.js`,
+    return file.change({
       source: transformed.code,
       path: `${file.path}.js`
-    }
+    });
   }
 }
 

@@ -12,20 +12,15 @@ const sassCompiler: Middleware = {
         file: file.originalPath
       });
 
-      
-      return {
-        ...file,
-        shortExtension: ".css",
-        longExtension: `${file.longExtension.slice(0, -file.shortExtension.length)}.css`,
+      return file.change({
         path: `${file.path}.css`,
         source: compiled.css.toString()
-      }
+      })
       
     } catch {
-      return {
-        ...file,
+      return file.change({
         shouldCommit: false
-      }
+      });
     }
   }
 }
