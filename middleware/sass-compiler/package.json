@@ -1,7 +1,7 @@
 {
   "name": "@rumblewikis/wikipages-sass-compiler-middleware",
   "description": "Compiles SASS/SCSS code for WikiPages.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "out/index.js",
   "types": "out/index.d.ts",
   "keywords": [
