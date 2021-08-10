@@ -20,7 +20,7 @@
     "prepack": "tsc || echo"
   },
   "dependencies": {
-    "sass": "^1.35.2"
+    "sass": "^1.37.5"
   },
   "repository": {
     "type": "git",
