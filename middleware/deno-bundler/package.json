@@ -2,8 +2,8 @@
   "name": "@rumblewikis/wikipages-deno-bundler-middleware",
   "description": "Bundles .jsx, .tsx, .js, and .ts files into .js files using the Deno bundler for WikiPages.",
   "version": "0.3.0",
-  "main": "out/index.js",
-  "types": "out/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "mediawiki",
     "wiki",

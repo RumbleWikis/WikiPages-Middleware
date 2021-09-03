@@ -18,7 +18,8 @@ const sassCompiler: Middleware = {
         source: compiled.css.toString()
       })
       
-    } catch {
+    } catch(err) {
+      file.errors.push(err);
       return file.change({
         shouldCommit: false
       });

@@ -35,12 +35,16 @@ const denoBundler: Middleware = {
       file.originalPath!
     ]);
 
-    if (!bundle.stdout.length) return file.change({ shouldCommit: false });
+    if (!bundle.stdout.length) {
+      file.errors.push(new Error(bundle.stderr));
+      return file.change({ shouldCommit: false })
+    };
 
-    if (!settings?.useBabel) return file.change({ 
-      source: bundle.stdout.toString(),
-      path: `${file.path}.js`
-    });
+    if (!settings?.useBabel)
+      return file.change({ 
+        source: bundle.stdout.toString(),
+        path: `${file.path}.js`
+      });
 
     const transformed = babel.transformSync(bundle.stdout.toString(), {
       presets: [[babelPresetEnv, { targets: "> 0.25%, not dead" }]],
@@ -50,7 +54,10 @@ const denoBundler: Middleware = {
       ],
     });
 
-    if (!transformed?.code) return file.change({ shouldCommit: false });
+    if (!transformed?.code) {
+      file.errors.push(new Error("babel.transformSync sent no code"));
+      return file.change({ shouldCommit: false })
+    };
 
 
     return file.change({
