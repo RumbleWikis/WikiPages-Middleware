@@ -3,6 +3,7 @@ import * as sass from "sass";
 import type { Middleware } from "@rumblewikis/wikipages";
 
 const sassCompiler: Middleware = {
+  type: "Page",
   matchShortExtension: /^\.s(c|a)ss$/,
   settingsIndex: "sassCompiler",
   execute: (file, settings?: sass.Options) => {

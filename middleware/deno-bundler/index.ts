@@ -25,6 +25,7 @@ interface DenoBundlerSettings {
 
 
 const denoBundler: Middleware = {
+  type: "Page",
   matchShortExtension: /^\.(j|t)sx?$/,
   settingsIndex: "denoBundler",
   execute: (file, settings?: DenoBundlerSettings) => {
